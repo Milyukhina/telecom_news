@@ -518,25 +518,6 @@
       gap: 8px;
     }
 
-    .operator-logo-wrap {
-      width: 30px;
-      height: 30px;
-      border-radius: 10px;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .operator-logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
     .card-op-name {
       font-size: 13px;
       font-weight: 600;
@@ -686,12 +667,36 @@
       color: var(--text-muted);
     }
 
+    .share-btn-sidebar {
+      margin-top: 4px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: #2e7d32;
+      color: #ffffff;
+      font-size: 12px;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(46, 125, 50, 0.45);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      width: 100%;
+    }
+
+    .share-btn-sidebar:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(46, 125, 50, 0.6);
+      background: #256428;
+    }
+
     .summary-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 4px;
-      max-height: 360px;
+      margin-top: 6px;
+      max-height: 320px;
       overflow-y: auto;
       padding-right: 4px;
       scrollbar-width: thin;
@@ -973,6 +978,14 @@
             <span class="chip-dot low"></span> Низкая
           </button>
         </div>
+        <div class="filters-group">
+          <span class="filters-label">Регион:</span>
+          <button class="chip active" data-filter-group="region" data-filter-value="all">Все</button>
+          <button class="chip" data-filter-group="region" data-filter-value="moscow">Москва и МО</button>
+          <button class="chip" data-filter-group="region" data-filter-value="spb">Санкт-Петербург и ЛО</button>
+          <button class="chip" data-filter-group="region" data-filter-value="federal">Федеральный</button>
+          <button class="chip" data-filter-group="region" data-filter-value="regions">Регионы</button>
+        </div>
         <button class="chip-reset" id="reset-filters" type="button">
           <span>↺</span> Сбросить все фильтры
         </button>
@@ -999,7 +1012,7 @@
         <div>
           <div>По выбранным фильтрам новостей нет.</div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">
-            Попробуйте изменить период или уровень критичности.
+            Попробуйте изменить период, регион или уровень критичности.
           </div>
         </div>
       </div>
@@ -1014,6 +1027,9 @@
       <div class="sidebar-sub">
         Краткий обзор ключевых новостей по всем операторам за последние 7 дней.
       </div>
+      <button id="share-summary-tg" class="share-btn-sidebar" type="button">
+        ↗ Шорт-лист недели в Telegram
+      </button>
       <div class="summary-list" id="summary-list"></div>
     </aside>
   </main>
@@ -1045,8 +1061,8 @@
       <div class="share-option" data-share-channel="max">
         <div class="share-icon max">M</div>
         <div>
-          <div class="share-text-main">Макс</div>
-          <div class="share-text-sub">Отправить по почте (через Макса)</div>
+          <div class="share-text-main">MAX</div>
+          <div class="share-text-sub">Открыть приложение MAX</div>
         </div>
       </div>
     </div>
@@ -1064,13 +1080,13 @@
     {
       operator: "МТС",
       brandColor: "#ff0000",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/MTS_logo_2020.svg",
       news: [
         {
           text: "МТС отменила комиссию за переводы в ОАЭ",
           importance: "high",
           date: "02.03.2026",
           category: "prices",
+          region: "federal",
           source: "https://www.cnews.ru/news/line/2026-03-02_mts_otmenila_komissiyu_za"
         },
         {
@@ -1078,6 +1094,7 @@
           importance: "medium",
           date: "07.03.2026",
           category: "connection",
+          region: "moscow",
           source: "https://www.mts.ru/about/news/5g-coverage-moscow-spb"
         },
         {
@@ -1085,6 +1102,7 @@
           importance: "medium",
           date: "05.03.2026",
           category: "products",
+          region: "federal",
           source: "https://www.mts.ru/about/news/new-remote-work-tariff"
         },
         {
@@ -1092,6 +1110,7 @@
           importance: "high",
           date: "03.03.2026",
           category: "security",
+          region: "federal",
           source: "https://www.mts.ru/about/news/phishing-alert-2026"
         }
       ]
@@ -1099,13 +1118,13 @@
     {
       operator: "Т2 (Tele2)",
       brandColor: "#000000",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tele2_Logo.svg",
       news: [
         {
           text: "Tele2 улучшила качество связи в пригородах крупных городов",
           importance: "medium",
           date: "06.03.2026",
           category: "connection",
+          region: "regions",
           source: "https://msk.tele2.ru/about/news-list/news/coverage-2026"
         },
         {
@@ -1113,6 +1132,7 @@
           importance: "low",
           date: "04.03.2026",
           category: "prices",
+          region: "federal",
           source: "https://msk.tele2.ru/about/news-list/news/cashback-10"
         },
         {
@@ -1120,6 +1140,7 @@
           importance: "medium",
           date: "01.03.2026",
           category: "products",
+          region: "federal",
           source: "https://msk.tele2.ru/about/news-list/news/esim-b2b-2026"
         }
       ]
@@ -1127,13 +1148,13 @@
     {
       operator: "МегаФон",
       brandColor: "#00b956",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/72/MegaFon_Logo.svg",
       news: [
         {
           text: "МегаФон включил 4G на новых участках трассы М-12",
           importance: "medium",
           date: "08.03.2026",
           category: "connection",
+          region: "regions",
           source: "https://moscow.megafon.ru/press/news/connection-m12-2026"
         },
         {
@@ -1141,6 +1162,7 @@
           importance: "low",
           date: "28.02.2026",
           category: "prices",
+          region: "federal",
           source: "https://moscow.megafon.ru/press/news/installment-phones"
         },
         {
@@ -1148,6 +1170,7 @@
           importance: "high",
           date: "05.03.2026",
           category: "security",
+          region: "federal",
           source: "https://moscow.megafon.ru/press/news/antifraud-2026"
         }
       ]
@@ -1155,13 +1178,13 @@
     {
       operator: "Yota",
       brandColor: "#0098d4",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Yota_logo.svg",
       news: [
         {
           text: "Yota запустила новый конструктор тарифов для геймеров",
           importance: "medium",
           date: "03.03.2026",
           category: "products",
+          region: "federal",
           source: "https://www.yota.ru/news/gamer-tariff-2026"
         },
         {
@@ -1169,6 +1192,7 @@
           importance: "low",
           date: "02.03.2026",
           category: "connection",
+          region: "regions",
           source: "https://www.yota.ru/news/lte-coverage-small-cities"
         }
       ]
@@ -1176,13 +1200,13 @@
     {
       operator: "СберМобайл",
       brandColor: "#2e7d32",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Sber_Mobile_logo.svg",
       news: [
         {
           text: "СберМобайл увеличил кэшбэк по тарифам с подпиской СберПрайм",
           importance: "medium",
           date: "06.03.2026",
           category: "prices",
+          region: "federal",
           source: "https://www.sberbank.ru/ru/person/mobile/news/cashback-prime"
         },
         {
@@ -1190,6 +1214,7 @@
           importance: "low",
           date: "04.03.2026",
           category: "products",
+          region: "federal",
           source: "https://www.sberbank.ru/ru/person/mobile/news/okko-tariff"
         },
         {
@@ -1197,6 +1222,7 @@
           importance: "high",
           date: "07.03.2026",
           category: "security",
+          region: "federal",
           source: "https://www.sberbank.ru/ru/person/mobile/news/spam-protection"
         }
       ]
@@ -1204,13 +1230,13 @@
     {
       operator: "Газпромбанк Мобайл",
       brandColor: "#003399",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Gazprombank_Logo.svg",
       news: [
         {
           text: "Газпромбанк Мобайл расширил сеть партнёрских салонов связи",
           importance: "low",
           date: "01.03.2026",
           category: "other",
+          region: "regions",
           source: "https://www.gazprombank.ru/press/news/mobile-retail-2026"
         },
         {
@@ -1218,6 +1244,7 @@
           importance: "medium",
           date: "05.03.2026",
           category: "other",
+          region: "regions",
           source: "https://www.gazprombank.ru/press/news/network-regions-2026"
         }
       ]
@@ -1241,6 +1268,14 @@
     other: "другое"
   };
 
+  const REGION_LABELS = {
+    all: "Все регионы",
+    federal: "Федеральный",
+    moscow: "Москва и МО",
+    spb: "Санкт-Петербург и ЛО",
+    regions: "Регионы"
+  };
+
   // -----------------------------
   // Состояние + LocalStorage
   // -----------------------------
@@ -1255,7 +1290,8 @@
     activeTab: "all",
     filters: {
       date: "all",
-      importance: "all"
+      importance: "all",
+      region: "all"
     },
     shareContext: null,
     carouselIndex: 0,
@@ -1280,7 +1316,8 @@
         if (parsed && typeof parsed === "object") {
           state.filters = {
             date: parsed.date || "all",
-            importance: parsed.importance || "all"
+            importance: parsed.importance || "all",
+            region: parsed.region || "all"
           };
         }
       }
@@ -1361,7 +1398,6 @@
         const value = chip.getAttribute("data-filter-value");
         if (!group || !value) return;
 
-        // выключаем другие чипы в группе
         document.querySelectorAll(`.chip[data-filter-group="${group}"]`).forEach(c => {
           c.classList.toggle("active", c === chip);
         });
@@ -1375,11 +1411,9 @@
     const resetBtn = document.getElementById("reset-filters");
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
-        state.filters = { date: "all", importance: "all" };
+        state.filters = { date: "all", importance: "all", region: "all" };
         saveStateToStorage();
-        // обновляем UI
         document.querySelectorAll(".chip[data-filter-group]").forEach(chip => {
-          const group = chip.getAttribute("data-filter-group");
           const value = chip.getAttribute("data-filter-value");
           chip.classList.toggle("active", value === "all");
         });
@@ -1387,7 +1421,6 @@
       });
     }
 
-    // Применяем состояние фильтров из localStorage при инициализации
     document.querySelectorAll(".chip[data-filter-group]").forEach(chip => {
       const group = chip.getAttribute("data-filter-group");
       const value = chip.getAttribute("data-filter-value");
@@ -1401,7 +1434,6 @@
   // Дата / период
   // -----------------------------
   function parseDateRu(str) {
-    // "DD.MM.YYYY"
     const [d, m, y] = str.split(".").map(Number);
     const date = new Date(y, m - 1, d);
     if (Number.isNaN(date.getTime())) return null;
@@ -1420,7 +1452,7 @@
     const date = parseDateRu(dateStr);
     if (!date) return true;
     const now = new Date();
-    const diff = differenceInDays(now, date); // сколько дней назад
+    const diff = differenceInDays(now, date);
     if (filterValue === "7d") {
       return diff >= 0 && diff <= 7;
     }
@@ -1428,7 +1460,7 @@
       return diff >= 0 && diff <= 3;
     }
     if (filterValue === "1d") {
-      return diff === 0 || diff === 1; // допустим "за 1 день" как сегодня или вчера
+      return diff === 0 || diff === 1;
     }
     return true;
   }
@@ -1436,7 +1468,7 @@
   function updateWeekRangeLabel() {
     const now = new Date();
     const endDate = now;
-    const startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000); // 7 дней, включая сегодня
+    const startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000);
     const options = { day: "2-digit", month: "2-digit" };
     const startStr = startDate.toLocaleDateString("ru-RU", options);
     const endStr = endDate.toLocaleDateString("ru-RU", options);
@@ -1456,12 +1488,10 @@
         items.push({
           ...item,
           operator: op.operator,
-          brandColor: op.brandColor,
-          logo: op.logo
+          brandColor: op.brandColor
         });
       });
     });
-    // сортировка по дате (сначала новые)
     items.sort((a, b) => {
       const da = parseDateRu(a.date) || new Date(0);
       const db = parseDateRu(b.date) || new Date(0);
@@ -1470,25 +1500,25 @@
     return items;
   }
 
+  // -----------------------------
+  // Фильтрация по состоянию
+  // -----------------------------
   function filterNewsByState() {
     const allItems = flattenNews();
 
     return allItems.filter(item => {
-      // Категория по вкладке
       if (state.activeTab !== "all" && item.category !== state.activeTab) {
         return false;
       }
-
-      // Фильтр даты
       if (!matchesDateFilter(item.date, state.filters.date)) {
         return false;
       }
-
-      // Фильтр важности
       if (state.filters.importance !== "all" && item.importance !== state.filters.importance) {
         return false;
       }
-
+      if (state.filters.region !== "all" && item.region !== state.filters.region) {
+        return false;
+      }
       return true;
     });
   }
@@ -1499,32 +1529,23 @@
   function createNewsCard(item) {
     const card = document.createElement("article");
     card.className = "card";
-    card.style.setProperty("--card-brand-color", item.brandColor || "#2e7d32");
-    card.style.setProperty("border-color", "rgba(0,0,0,0.02)");
-    card.style.setProperty("--card-border-color", item.brandColor || "#2e7d32");
-    card.style.boxShadow = "var(--shadow-soft)";
-
-    // цветная рамка
-    card.style.setProperty("--brand-color", item.brandColor || "#2e7d32");
     card.style.border = "1px solid var(--border-subtle)";
-    card.style.setProperty("box-shadow", "var(--shadow-soft)");
-    card.style.setProperty("position", "relative");
-    card.querySelector;
-
+    card.style.boxShadow = "var(--shadow-soft)";
     card.style.backgroundImage =
       "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(46,125,50,0.02))";
 
+    const regionLabel = REGION_LABELS[item.region] || "Федеральный";
+
     card.innerHTML = `
       <div class="card-header">
-        <div class="operator-logo-wrap" style="box-shadow: 0 0 0 2px ${item.brandColor}22;">
-          <img src="${item.logo}" alt="Логотип ${item.operator}" loading="lazy">
-        </div>
         <div>
           <div class="card-op-name">${item.operator}</div>
           <div class="card-meta-row">
             <span>${item.date}</span>
             <span>•</span>
-            <span>${item.source.replace(/^https?:\/\//, "").split("/")[0]}</span>
+            <span>${item.source.replace(/^https?:\\/\\//, "").split("/")[0]}</span>
+            <span>•</span>
+            <span>${regionLabel}</span>
           </div>
         </div>
       </div>
@@ -1547,14 +1568,13 @@
       </div>
     `;
 
-    // установим цветную рамку поверх ::before
     requestAnimationFrame(() => {
       const beforeStyle = document.createElement("style");
       const uniqueClass = "card-brand-" + Math.random().toString(16).slice(2, 8);
       card.classList.add(uniqueClass);
       beforeStyle.textContent = `
         .${uniqueClass}::before {
-          border-color: ${item.brandColor || "#2e7d32"}33;
+          border-color: ${(item.brandColor || "#2e7d32")}33;
         }
       `;
       document.head.appendChild(beforeStyle);
@@ -1590,10 +1610,8 @@
   function renderNews() {
     const items = filterNewsByState();
     const grid = document.getElementById("news-grid");
-    const carouselContainer = document.getElementById("news-carousel");
     const emptyState = document.getElementById("empty-state");
 
-    // Grid
     if (grid) {
       grid.innerHTML = "";
       items.forEach(item => {
@@ -1601,7 +1619,6 @@
       });
     }
 
-    // Carousel (mobile)
     renderCarousel(items);
 
     const hasItems = items.length > 0;
@@ -1609,10 +1626,8 @@
       emptyState.classList.toggle("hidden", hasItems);
     }
 
-    // Обновляем сводку
     renderSummary();
 
-    // Обновляем подпись про режим просмотра
     const viewModeLabel = document.getElementById("view-mode-label");
     if (viewModeLabel) {
       const mobile = window.innerWidth <= 768;
@@ -1710,16 +1725,18 @@
   // -----------------------------
   // Сводка за неделю (sidebar)
   // -----------------------------
+  function getWeekItems() {
+    const allItems = flattenNews();
+    return allItems.filter(item => matchesDateFilter(item.date, "7d"));
+  }
+
   function renderSummary() {
     const listEl = document.getElementById("summary-list");
     const countEl = document.getElementById("summary-count");
     if (!listEl || !countEl) return;
 
-    const allItems = flattenNews();
-    const now = new Date();
-    const weekItems = allItems.filter(item => matchesDateFilter(item.date, "7d"));
+    const weekItems = getWeekItems();
 
-    // приоритет: high -> medium -> low
     weekItems.sort((a, b) => {
       const priority = { high: 0, medium: 1, low: 2 };
       const pa = priority[a.importance] ?? 3;
@@ -1747,11 +1764,54 @@
       listEl.appendChild(el);
     });
 
-    countEl.textContent = `${weekItems.length} событ.`; // кратко
+    countEl.textContent = `${weekItems.length} событ.`;
+  }
+
+  function buildWeeklyShortlistText() {
+    const weekItems = getWeekItems();
+
+    weekItems.sort((a, b) => {
+      const priority = { high: 0, medium: 1, low: 2 };
+      const pa = priority[a.importance] ?? 3;
+      const pb = priority[b.importance] ?? 3;
+      if (pa !== pb) return pa - pb;
+      const da = parseDateRu(a.date) || new Date(0);
+      const db = parseDateRu(b.date) || new Date(0);
+      return db - da;
+    });
+
+    const topItems = weekItems.slice(0, 10);
+
+    if (topItems.length === 0) return "";
+
+    const lines = [];
+    lines.push("Телеком-дайджест: ключевые новости за неделю:");
+    lines.push("");
+
+    topItems.forEach((item, idx) => {
+      lines.push(`${idx + 1}. ${item.operator} — ${item.text} (${item.date})`);
+      lines.push(item.source);
+      lines.push("");
+    });
+
+    return lines.join("\n");
+  }
+
+  function setupSummaryShare() {
+    const btn = document.getElementById("share-summary-tg");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+      const text = buildWeeklyShortlistText();
+      if (!text.trim()) return;
+      const encText = encodeURIComponent(text);
+      const url = `https://t.me/share/url?text=${encText}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
   }
 
   // -----------------------------
-  // Модальное окно пересылки
+  // Модальное окно пересылки (по одной новости)
   // -----------------------------
   function openShareModal(item) {
     state.shareContext = item;
@@ -1814,9 +1874,8 @@
       return `https://t.me/share/url?url=${encUrl}&text=${encText}`;
     }
     if (channel === "max") {
-      const subject = encodeURIComponent("Интересная новость от телеком-оператора");
-      const body = encodeURIComponent(`${text}\n\nСсылка: ${url}`);
-      return `mailto:?subject=${subject}&body=${body}`;
+      // ссылка для открытия приложения MAX (предполагаемый custom protocol)
+      return `max://share?text=${encText}`;
     }
     return null;
   }
@@ -1847,6 +1906,7 @@
     setupTabs();
     setupFilters();
     setupShareModal();
+    setupSummaryShare();
     setupResponsiveViewLabel();
 
     renderNews();
