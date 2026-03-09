@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <title>Новости телеком-операторов</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Шрифты: Inter, Roboto, SF Pro Display (замещён через system-ui) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -28,7 +27,6 @@
       --transition-fast: 0.2s ease;
       --col-sidebar-width: 320px;
     }
-
     [data-theme="dark"] {
       --bg-main: #121212;
       --bg-secondary: #1a1a1a;
@@ -41,53 +39,37 @@
       --border-subtle: #333333;
       --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.7);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
-      font-family: "Inter", "SF Pro Display", Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background-color: var(--bg-main);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .app {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       background: radial-gradient(circle at top left, rgba(46, 125, 50, 0.08), transparent 60%),
-      radial-gradient(circle at bottom right, rgba(46, 125, 50, 0.06), transparent 60%);
+                  radial-gradient(circle at bottom right, rgba(46, 125, 50, 0.06), transparent 60%);
     }
 
     /* Header */
-
     .header {
       position: sticky;
       top: 0;
       z-index: 20;
       backdrop-filter: blur(14px);
-      background: color-mix(in srgb, var(--bg-header) 88%, transparent);
+      background: rgba(255,255,255,0.9);
       border-bottom: 1px solid var(--border-subtle);
     }
-
+    [data-theme="dark"] .header {
+      background: rgba(18,18,18,0.9);
+    }
     .header-inner {
       max-width: 1280px;
       margin: 0 auto;
@@ -97,13 +79,11 @@
       justify-content: space-between;
       gap: 16px;
     }
-
     .logo-area {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .logo-mark {
       width: 32px;
       height: 32px;
@@ -117,29 +97,10 @@
       font-size: 18px;
       box-shadow: 0 8px 20px rgba(46, 125, 50, 0.5);
     }
-
-    .logo-text-main {
-      font-weight: 600;
-      font-size: 17px;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .logo-text-column {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .logo-text-main { font-weight: 600; font-size: 17px; }
+    .logo-text-sub { font-size: 12px; color: var(--text-muted); }
+    .logo-text-column { display: flex; flex-direction: column; gap: 2px; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
     .week-label {
       padding: 6px 12px;
       border-radius: 999px;
@@ -150,15 +111,7 @@
       align-items: center;
       gap: 6px;
     }
-
-    .week-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #2e7d32;
-    }
-
-    /* Theme toggle */
+    .week-dot { width: 6px; height: 6px; border-radius: 50%; background: #2e7d32; }
 
     .theme-toggle {
       position: relative;
@@ -173,7 +126,6 @@
       cursor: pointer;
       transition: background-color var(--transition-fast), border-color var(--transition-fast);
     }
-
     .theme-toggle-thumb {
       position: absolute;
       width: 22px;
@@ -188,12 +140,10 @@
       justify-content: center;
       font-size: 13px;
     }
-
     [data-theme="dark"] .theme-toggle-thumb {
       transform: translateX(24px);
       background: #1a1a1a;
     }
-
     .theme-toggle-icon {
       flex: 1;
       display: flex;
@@ -204,18 +154,13 @@
       z-index: 1;
     }
 
-    /* Tabs navigation */
-
+    /* Tabs */
     .tabs-nav-wrapper {
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-
-    .tabs-nav-wrapper::-webkit-scrollbar {
-      display: none;
-    }
-
+    .tabs-nav-wrapper::-webkit-scrollbar { display: none; }
     .tabs-nav {
       max-width: 1280px;
       margin: 4px auto 0;
@@ -224,7 +169,6 @@
       gap: 8px;
       border-bottom: 1px solid var(--border-subtle);
     }
-
     .tab-pill {
       flex-shrink: 0;
       padding: 8px 14px;
@@ -238,19 +182,10 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast),
-      transform var(--transition-fast);
+      transition: background-color var(--transition-fast), color var(--transition-fast),
+                  border-color var(--transition-fast), transform var(--transition-fast);
     }
-
-    .tab-pill span {
-      font-size: 15px;
-    }
-
-    .tab-pill:hover {
-      transform: translateY(-1px);
-      background: var(--bg-secondary);
-    }
-
+    .tab-pill:hover { transform: translateY(-1px); background: var(--bg-secondary); }
     .tab-pill.active {
       color: #ffffff;
       border-color: transparent;
@@ -259,7 +194,6 @@
     }
 
     /* Layout */
-
     .page {
       flex: 1;
       max-width: 1280px;
@@ -269,15 +203,11 @@
       grid-template-columns: minmax(0, 1.9fr) minmax(260px, var(--col-sidebar-width));
       gap: 20px;
     }
-
     @media (max-width: 960px) {
-      .page {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .page { grid-template-columns: minmax(0, 1fr); }
     }
 
     /* Filters */
-
     .filters-card {
       background: var(--bg-card);
       border-radius: var(--radius-card);
@@ -290,21 +220,13 @@
       gap: 12px 20px;
       align-items: center;
     }
-
-    .filters-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-
+    .filters-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .filters-label {
       font-size: 12px;
       font-weight: 500;
       color: var(--text-muted);
       margin-right: 2px;
     }
-
     .chip {
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
@@ -316,28 +238,14 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast),
-      transform var(--transition-fast), box-shadow var(--transition-fast);
+      transition: background-color var(--transition-fast), color var(--transition-fast),
+                  border-color var(--transition-fast), transform var(--transition-fast),
+                  box-shadow var(--transition-fast);
     }
-
-    .chip-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    .chip-dot.high {
-      background: #f44336;
-    }
-
-    .chip-dot.medium {
-      background: #ff9800;
-    }
-
-    .chip-dot.low {
-      background: #4caf50;
-    }
-
+    .chip-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .chip-dot.high { background: #f44336; }
+    .chip-dot.medium { background: #ff9800; }
+    .chip-dot.low { background: #4caf50; }
     .chip.active {
       background: var(--bg-chip-active);
       border-color: transparent;
@@ -345,7 +253,6 @@
       box-shadow: 0 6px 12px rgba(46, 125, 50, 0.45);
       transform: translateY(-1px);
     }
-
     .chip-reset {
       font-size: 12px;
       color: var(--accent);
@@ -357,12 +264,7 @@
       gap: 6px;
     }
 
-    .chip-reset span {
-      font-size: 14px;
-    }
-
     /* News grid / carousel */
-
     .news-area-header {
       display: flex;
       justify-content: space-between;
@@ -370,13 +272,7 @@
       margin-bottom: 8px;
       gap: 8px;
     }
-
-    .news-area-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
+    .news-area-title { font-size: 14px; font-weight: 500; color: var(--text-muted); }
     .view-mode-label {
       font-size: 11px;
       color: var(--text-muted);
@@ -384,26 +280,17 @@
       border-radius: var(--radius-pill);
       border: 1px dashed var(--border-subtle);
     }
-
     .news-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
-
     @media (max-width: 1120px) {
-      .news-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-
     @media (max-width: 768px) {
-      .news-grid {
-        display: none;
-      }
+      .news-grid { display: none; }
     }
-
-    /* Карусель (мобайл) */
 
     .news-carousel {
       display: none;
@@ -411,19 +298,16 @@
       overflow: hidden;
       border-radius: var(--radius-card);
     }
-
     .news-carousel-track {
       display: flex;
       transition: transform 0.4s ease;
       will-change: transform;
     }
-
     .news-carousel-item {
       min-width: 100%;
       box-sizing: border-box;
       padding-right: 4px;
     }
-
     .carousel-ctrl {
       position: absolute;
       top: 50%;
@@ -443,15 +327,8 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
     }
-
-    .carousel-ctrl.left {
-      left: 8px;
-    }
-
-    .carousel-ctrl.right {
-      right: 8px;
-    }
-
+    .carousel-ctrl.left { left: 8px; }
+    .carousel-ctrl.right { right: 8px; }
     .carousel-dots {
       position: absolute;
       bottom: 8px;
@@ -460,28 +337,18 @@
       display: flex;
       gap: 6px;
     }
-
     .carousel-dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.4);
     }
-
-    .carousel-dot.active {
-      width: 16px;
-      background: #ffffff;
-    }
-
+    .carousel-dot.active { width: 16px; background: #ffffff; }
     @media (max-width: 768px) {
-      .news-carousel {
-        display: block;
-        margin: 6px 0 2px;
-      }
+      .news-carousel { display: block; margin: 6px 0 2px; }
     }
 
-    /* News card */
-
+    /* Card */
     .card {
       background: var(--bg-card);
       border-radius: var(--radius-card);
@@ -491,12 +358,11 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast),
-      background-color var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+                  border-color var(--transition-fast), background-color var(--transition-fast);
       position: relative;
       overflow: hidden;
     }
-
     .card::before {
       content: "";
       position: absolute;
@@ -505,24 +371,17 @@
       border: 2px solid transparent;
       pointer-events: none;
     }
-
     .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 14px 32px rgba(0, 0, 0, 0.15);
       border-color: rgba(46, 125, 50, 0.5);
     }
-
     .card-header {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .card-op-name {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
+    .card-op-name { font-size: 13px; font-weight: 600; }
     .card-meta-row {
       display: flex;
       align-items: center;
@@ -531,7 +390,6 @@
       color: var(--text-muted);
       flex-wrap: wrap;
     }
-
     .badge {
       font-size: 10px;
       padding: 2px 6px;
@@ -540,33 +398,11 @@
       letter-spacing: 0.04em;
       font-weight: 600;
     }
-
-    .badge-category {
-      background: rgba(46, 125, 50, 0.12);
-      color: #2e7d32;
-    }
-
-    .badge-importance-high {
-      background: rgba(244, 67, 54, 0.16);
-      color: #f44336;
-    }
-
-    .badge-importance-medium {
-      background: rgba(255, 152, 0, 0.16);
-      color: #ff9800;
-    }
-
-    .badge-importance-low {
-      background: rgba(76, 175, 80, 0.16);
-      color: #4caf50;
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
+    .badge-category { background: rgba(46, 125, 50, 0.12); color: #2e7d32; }
+    .badge-importance-high { background: rgba(244, 67, 54, 0.16); color: #f44336; }
+    .badge-importance-medium { background: rgba(255, 152, 0, 0.16); color: #ff9800; }
+    .badge-importance-low { background: rgba(76, 175, 80, 0.16); color: #4caf50; }
+    .card-title { font-size: 13px; font-weight: 500; line-height: 1.4; }
     .card-footer {
       display: flex;
       align-items: center;
@@ -574,7 +410,6 @@
       gap: 8px;
       margin-top: 2px;
     }
-
     .card-footer-left {
       display: flex;
       flex-wrap: wrap;
@@ -583,11 +418,7 @@
       font-size: 11px;
       color: var(--text-muted);
     }
-
-    .source-link {
-      font-size: 11px;
-      font-weight: 500;
-    }
+    .source-link { font-size: 11px; font-weight: 500; }
 
     .share-btn {
       border-radius: var(--radius-pill);
@@ -601,27 +432,18 @@
       gap: 4px;
       cursor: pointer;
       box-shadow: 0 6px 14px rgba(46, 125, 50, 0.45);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+                  background-color var(--transition-fast);
       white-space: nowrap;
     }
-
-    .share-btn span {
-      font-size: 13px;
-    }
-
+    .share-btn span { font-size: 13px; }
     .share-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 8px 18px rgba(46, 125, 50, 0.6);
       background: #256428;
     }
 
-    .share-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.4);
-    }
-
-    /* Sidebar summary */
-
+    /* Sidebar */
     .sidebar-card {
       background: var(--bg-card);
       border-radius: var(--radius-card);
@@ -634,25 +456,14 @@
       position: sticky;
       top: 84px;
     }
-
-    @media (max-width: 960px) {
-      .sidebar-card {
-        position: static;
-      }
-    }
-
+    @media (max-width: 960px) { .sidebar-card { position: static; } }
     .sidebar-title-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
     }
-
-    .sidebar-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
+    .sidebar-title { font-size: 14px; font-weight: 600; }
     .sidebar-count-pill {
       font-size: 11px;
       padding: 3px 8px;
@@ -661,12 +472,7 @@
       color: #2e7d32;
       font-weight: 500;
     }
-
-    .sidebar-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
+    .sidebar-sub { font-size: 12px; color: var(--text-muted); }
     .share-btn-sidebar {
       margin-top: 4px;
       border-radius: var(--radius-pill);
@@ -681,16 +487,15 @@
       gap: 6px;
       cursor: pointer;
       box-shadow: 0 6px 14px rgba(46, 125, 50, 0.45);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+                  background-color var(--transition-fast);
       width: 100%;
     }
-
     .share-btn-sidebar:hover {
       transform: translateY(-1px);
       box-shadow: 0 8px 18px rgba(46, 125, 50, 0.6);
       background: #256428;
     }
-
     .summary-list {
       display: flex;
       flex-direction: column;
@@ -701,14 +506,12 @@
       padding-right: 4px;
       scrollbar-width: thin;
     }
-
     .summary-item {
       display: flex;
       gap: 8px;
       align-items: flex-start;
       font-size: 12px;
     }
-
     .summary-dot {
       width: 9px;
       height: 9px;
@@ -717,30 +520,12 @@
       margin-top: 4px;
       flex-shrink: 0;
     }
+    .summary-content { display: flex; flex-direction: column; gap: 2px; }
+    .summary-operator { font-size: 11px; color: var(--text-muted); }
+    .summary-link { font-size: 12px; font-weight: 500; }
+    .summary-meta { font-size: 11px; color: var(--text-muted); }
 
-    .summary-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .summary-operator {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .summary-link {
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .summary-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* Modal share */
-
+    /* Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -751,11 +536,7 @@
       z-index: 50;
       backdrop-filter: blur(8px);
     }
-
-    .modal-backdrop.visible {
-      display: flex;
-    }
-
+    .modal-backdrop.visible { display: flex; }
     .modal {
       width: 100%;
       max-width: 360px;
@@ -767,32 +548,14 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      animation: modalIn 0.18s ease-out;
     }
-
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 8px;
     }
-
-    .modal-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
+    .modal-title { font-size: 14px; font-weight: 600; }
     .modal-close {
       border: none;
       background: transparent;
@@ -801,19 +564,8 @@
       font-size: 18px;
       line-height: 1;
     }
-
-    .modal-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .modal-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
+    .modal-sub { font-size: 12px; color: var(--text-muted); }
+    .modal-options { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
     .share-option {
       display: flex;
       align-items: center;
@@ -822,15 +574,14 @@
       border: 1px solid var(--border-subtle);
       padding: 8px 10px;
       cursor: pointer;
-      transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      transition: background-color var(--transition-fast), transform var(--transition-fast),
+                  box-shadow var(--transition-fast);
     }
-
     .share-option:hover {
       transform: translateY(-1px);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       background: var(--bg-secondary);
     }
-
     .share-icon {
       width: 28px;
       height: 28px;
@@ -842,36 +593,12 @@
       font-size: 16px;
       flex-shrink: 0;
     }
-
-    .share-icon.vk {
-      background: #4c75a3;
-    }
-
-    .share-icon.tg {
-      background: #0088cc;
-    }
-
-    .share-icon.max {
-      background: #2e7d32;
-    }
-
-    .share-text-main {
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .share-text-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .modal-footer {
-      margin-top: 4px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* Empty state */
+    .share-icon.vk { background: #4c75a3; }
+    .share-icon.tg { background: #0088cc; }
+    .share-icon.max { background: #2e7d32; }
+    .share-text-main { font-size: 13px; font-weight: 500; }
+    .share-text-sub { font-size: 11px; color: var(--text-muted); }
+    .modal-footer { margin-top: 4px; font-size: 11px; color: var(--text-muted); }
 
     .empty-state {
       padding: 18px 14px;
@@ -884,7 +611,6 @@
       gap: 8px;
       background: var(--bg-card);
     }
-
     .empty-state-icon {
       width: 26px;
       height: 26px;
@@ -896,16 +622,11 @@
       font-size: 16px;
     }
 
-    /* Utility */
-
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
   </style>
 </head>
 <body data-theme="light">
 <div class="app">
-  <!-- Header -->
   <header class="header">
     <div class="header-inner">
       <div class="logo-area">
@@ -929,66 +650,42 @@
     </div>
     <div class="tabs-nav-wrapper">
       <nav class="tabs-nav" aria-label="Разделы новостей">
-        <button class="tab-pill active" data-tab="all">
-          <span>🏠</span> Главная
-        </button>
-        <button class="tab-pill" data-tab="connection">
-          <span>📶</span> Качество связи
-        </button>
-        <button class="tab-pill" data-tab="prices">
-          <span>💰</span> Цены
-        </button>
-        <button class="tab-pill" data-tab="products">
-          <span>✨</span> Новые продукты
-        </button>
-        <button class="tab-pill" data-tab="security">
-          <span>🛡️</span> Безопасность
-        </button>
-        <button class="tab-pill" data-tab="other">
-          <span>📡</span> Другое
-        </button>
+        <button class="tab-pill active" data-tab="all"><span>🏠</span> Главная</button>
+        <button class="tab-pill" data-tab="connection"><span>📶</span> Качество связи</button>
+        <button class="tab-pill" data-tab="prices"><span>💰</span> Цены</button>
+        <button class="tab-pill" data-tab="products"><span>✨</span> Новые продукты</button>
+        <button class="tab-pill" data-tab="security"><span>🛡️</span> Безопасность</button>
+        <button class="tab-pill" data-tab="other"><span>📡</span> Другое</button>
       </nav>
     </div>
   </header>
 
-  <!-- Main layout -->
   <main class="page">
-    <!-- Left: filters + news -->
     <section aria-label="Новости">
       <div class="filters-card">
         <div class="filters-group">
           <span class="filters-label">Дата:</span>
-          <button class="chip active" data-filter-group="date" data-filter-value="all">Все</button>
+          <button class="chip" data-filter-group="date" data-filter-value="all">Все</button>
           <button class="chip" data-filter-group="date" data-filter-value="7d">За неделю</button>
           <button class="chip" data-filter-group="date" data-filter-value="3d">За 3 дня</button>
           <button class="chip" data-filter-group="date" data-filter-value="1d">За 1 день</button>
         </div>
         <div class="filters-group">
           <span class="filters-label">Критичность:</span>
-          <button class="chip active" data-filter-group="importance" data-filter-value="all">
-            Все
-          </button>
-          <button class="chip" data-filter-group="importance" data-filter-value="high">
-            <span class="chip-dot high"></span> Высокая
-          </button>
-          <button class="chip" data-filter-group="importance" data-filter-value="medium">
-            <span class="chip-dot medium"></span> Средняя
-          </button>
-          <button class="chip" data-filter-group="importance" data-filter-value="low">
-            <span class="chip-dot low"></span> Низкая
-          </button>
+          <button class="chip" data-filter-group="importance" data-filter-value="all">Все</button>
+          <button class="chip" data-filter-group="importance" data-filter-value="high"><span class="chip-dot high"></span>Высокая</button>
+          <button class="chip" data-filter-group="importance" data-filter-value="medium"><span class="chip-dot medium"></span>Средняя</button>
+          <button class="chip" data-filter-group="importance" data-filter-value="low"><span class="chip-dot low"></span>Низкая</button>
         </div>
         <div class="filters-group">
           <span class="filters-label">Регион:</span>
-          <button class="chip active" data-filter-group="region" data-filter-value="all">Все</button>
+          <button class="chip" data-filter-group="region" data-filter-value="all">Все</button>
           <button class="chip" data-filter-group="region" data-filter-value="moscow">Москва и МО</button>
           <button class="chip" data-filter-group="region" data-filter-value="spb">Санкт-Петербург и ЛО</button>
           <button class="chip" data-filter-group="region" data-filter-value="federal">Федеральный</button>
           <button class="chip" data-filter-group="region" data-filter-value="regions">Регионы</button>
         </div>
-        <button class="chip-reset" id="reset-filters" type="button">
-          <span>↺</span> Сбросить все фильтры
-        </button>
+        <button class="chip-reset" id="reset-filters" type="button"><span>↺</span> Сбросить все фильтры</button>
       </div>
 
       <div class="news-area-header">
@@ -996,10 +693,8 @@
         <div class="view-mode-label" id="view-mode-label">Сетка карточек</div>
       </div>
 
-      <!-- Desktop / tablet grid -->
       <div id="news-grid" class="news-grid"></div>
 
-      <!-- Mobile carousel -->
       <div id="news-carousel" class="news-carousel" aria-label="Карусель новостей">
         <button class="carousel-ctrl left" type="button" aria-label="Предыдущая новость">‹</button>
         <div class="news-carousel-track"></div>
@@ -1011,31 +706,23 @@
         <div class="empty-state-icon">🧭</div>
         <div>
           <div>По выбранным фильтрам новостей нет.</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">
-            Попробуйте изменить период, регион или уровень критичности.
-          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Попробуйте изменить период, регион или уровень критичности.</div>
         </div>
       </div>
     </section>
 
-    <!-- Right: weekly summary -->
     <aside class="sidebar-card" aria-label="Сводка за неделю">
       <div class="sidebar-title-row">
         <div class="sidebar-title">Сводка за неделю</div>
-        <div class="sidebar-count-pill" id="summary-count">0 событий</div>
+        <div class="sidebar-count-pill" id="summary-count">0 событ.</div>
       </div>
-      <div class="sidebar-sub">
-        Краткий обзор ключевых новостей по всем операторам за последние 7 дней.
-      </div>
-      <button id="share-summary-tg" class="share-btn-sidebar" type="button">
-        ↗ Шорт-лист недели в Telegram
-      </button>
+      <div class="sidebar-sub">Краткий обзор ключевых новостей по всем операторам за последние 7 дней.</div>
+      <button id="share-summary-tg" class="share-btn-sidebar" type="button">↗ Шорт-лист недели в Telegram</button>
       <div class="summary-list" id="summary-list"></div>
     </aside>
   </main>
 </div>
 
-<!-- Share Modal -->
 <div id="share-modal-backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
   <div class="modal">
     <div class="modal-header">
@@ -1066,187 +753,63 @@
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      Ссылки формируются автоматически. Никакие данные не отправляются с сайта.
-    </div>
+    <div class="modal-footer">Ссылки формируются автоматически. Никакие данные не отправляются с сайта.</div>
   </div>
 </div>
 
 <script>
-  // -----------------------------
-  // Данные: операторы и новости
-  // -----------------------------
   const telecomData = [
     {
       operator: "МТС",
       brandColor: "#ff0000",
       news: [
-        {
-          text: "МТС отменила комиссию за переводы в ОАЭ",
-          importance: "high",
-          date: "02.03.2026",
-          category: "prices",
-          region: "federal",
-          source: "https://www.cnews.ru/news/line/2026-03-02_mts_otmenila_komissiyu_za"
-        },
-        {
-          text: "МТС расширила покрытие 5G в Москве и Санкт-Петербурге",
-          importance: "medium",
-          date: "07.03.2026",
-          category: "connection",
-          region: "moscow",
-          source: "https://www.mts.ru/about/news/5g-coverage-moscow-spb"
-        },
-        {
-          text: "Запущен новый тариф для удалённой работы с безлимитным трафиком",
-          importance: "medium",
-          date: "05.03.2026",
-          category: "products",
-          region: "federal",
-          source: "https://www.mts.ru/about/news/new-remote-work-tariff"
-        },
-        {
-          text: "МТС предупредила о новой волне фишинговых SMS",
-          importance: "high",
-          date: "03.03.2026",
-          category: "security",
-          region: "federal",
-          source: "https://www.mts.ru/about/news/phishing-alert-2026"
-        }
+        { text: "МТС отменила комиссию за переводы в ОАЭ", importance: "high", date: "02.03.2026", category: "prices", region: "federal", source: "https://www.cnews.ru/news/line/2026-03-02_mts_otmenila_komissiyu_za" },
+        { text: "МТС расширила покрытие 5G в Москве и Санкт-Петербурге", importance: "medium", date: "07.03.2026", category: "connection", region: "moscow", source: "https://www.mts.ru/about/news/5g-coverage-moscow-spb" },
+        { text: "Запущен новый тариф для удалённой работы с безлимитным трафиком", importance: "medium", date: "05.03.2026", category: "products", region: "federal", source: "https://www.mts.ru/about/news/new-remote-work-tariff" },
+        { text: "МТС предупредила о новой волне фишинговых SMS", importance: "high", date: "03.03.2026", category: "security", region: "federal", source: "https://www.mts.ru/about/news/phishing-alert-2026" }
       ]
     },
     {
       operator: "Т2 (Tele2)",
       brandColor: "#000000",
       news: [
-        {
-          text: "Tele2 улучшила качество связи в пригородах крупных городов",
-          importance: "medium",
-          date: "06.03.2026",
-          category: "connection",
-          region: "regions",
-          source: "https://msk.tele2.ru/about/news-list/news/coverage-2026"
-        },
-        {
-          text: "Запущена акция с кэшбэком 10% за оплату тарифов",
-          importance: "low",
-          date: "04.03.2026",
-          category: "prices",
-          region: "federal",
-          source: "https://msk.tele2.ru/about/news-list/news/cashback-10"
-        },
-        {
-          text: "Tele2 представила новый сервис eSIM для корпоративных клиентов",
-          importance: "medium",
-          date: "01.03.2026",
-          category: "products",
-          region: "federal",
-          source: "https://msk.tele2.ru/about/news-list/news/esim-b2b-2026"
-        }
+        { text: "Tele2 улучшила качество связи в пригородах крупных городов", importance: "medium", date: "06.03.2026", category: "connection", region: "regions", source: "https://msk.tele2.ru/about/news-list/news/coverage-2026" },
+        { text: "Запущена акция с кэшбэком 10% за оплату тарифов", importance: "low", date: "04.03.2026", category: "prices", region: "federal", source: "https://msk.tele2.ru/about/news-list/news/cashback-10" },
+        { text: "Tele2 представила новый сервис eSIM для корпоративных клиентов", importance: "medium", date: "01.03.2026", category: "products", region: "federal", source: "https://msk.tele2.ru/about/news-list/news/esim-b2b-2026" }
       ]
     },
     {
       operator: "МегаФон",
       brandColor: "#00b956",
       news: [
-        {
-          text: "МегаФон включил 4G на новых участках трассы М-12",
-          importance: "medium",
-          date: "08.03.2026",
-          category: "connection",
-          region: "regions",
-          source: "https://moscow.megafon.ru/press/news/connection-m12-2026"
-        },
-        {
-          text: "Совместный проект с банком для рассрочки смартфонов без переплат",
-          importance: "low",
-          date: "28.02.2026",
-          category: "prices",
-          region: "federal",
-          source: "https://moscow.megafon.ru/press/news/installment-phones"
-        },
-        {
-          text: "МегаФон усилил антифрод-систему для борьбы с мошенничеством",
-          importance: "high",
-          date: "05.03.2026",
-          category: "security",
-          region: "federal",
-          source: "https://moscow.megafon.ru/press/news/antifraud-2026"
-        }
+        { text: "МегаФон включил 4G на новых участках трассы М-12", importance: "medium", date: "08.03.2026", category: "connection", region: "regions", source: "https://moscow.megafon.ru/press/news/connection-m12-2026" },
+        { text: "Совместный проект с банком для рассрочки смартфонов без переплат", importance: "low", date: "28.02.2026", category: "prices", region: "federal", source: "https://moscow.megafon.ru/press/news/installment-phones" },
+        { text: "МегаФон усилил антифрод-систему для борьбы с мошенничеством", importance: "high", date: "05.03.2026", category: "security", region: "federal", source: "https://moscow.megafon.ru/press/news/antifraud-2026" }
       ]
     },
     {
       operator: "Yota",
       brandColor: "#0098d4",
       news: [
-        {
-          text: "Yota запустила новый конструктор тарифов для геймеров",
-          importance: "medium",
-          date: "03.03.2026",
-          category: "products",
-          region: "federal",
-          source: "https://www.yota.ru/news/gamer-tariff-2026"
-        },
-        {
-          text: "Расширено LTE-покрытие в небольших городах",
-          importance: "low",
-          date: "02.03.2026",
-          category: "connection",
-          region: "regions",
-          source: "https://www.yota.ru/news/lte-coverage-small-cities"
-        }
+        { text: "Yota запустила новый конструктор тарифов для геймеров", importance: "medium", date: "03.03.2026", category: "products", region: "federal", source: "https://www.yota.ru/news/gamer-tariff-2026" },
+        { text: "Расширено LTE-покрытие в небольших городах", importance: "low", date: "02.03.2026", category: "connection", region: "regions", source: "https://www.yota.ru/news/lte-coverage-small-cities" }
       ]
     },
     {
       operator: "СберМобайл",
       brandColor: "#2e7d32",
       news: [
-        {
-          text: "СберМобайл увеличил кэшбэк по тарифам с подпиской СберПрайм",
-          importance: "medium",
-          date: "06.03.2026",
-          category: "prices",
-          region: "federal",
-          source: "https://www.sberbank.ru/ru/person/mobile/news/cashback-prime"
-        },
-        {
-          text: "Новый тариф с включённой подпиской на ОККО и СберЗвук",
-          importance: "low",
-          date: "04.03.2026",
-          category: "products",
-          region: "federal",
-          source: "https://www.sberbank.ru/ru/person/mobile/news/okko-tariff"
-        },
-        {
-          text: "СберМобайл внедрил дополнительные механизмы защиты от спам-звонков",
-          importance: "high",
-          date: "07.03.2026",
-          category: "security",
-          region: "federal",
-          source: "https://www.sberbank.ru/ru/person/mobile/news/spam-protection"
-        }
+        { text: "СберМобайл увеличил кэшбэк по тарифам с подпиской СберПрайм", importance: "medium", date: "06.03.2026", category: "prices", region: "federal", source: "https://www.sberbank.ru/ru/person/mobile/news/cashback-prime" },
+        { text: "Новый тариф с включённой подпиской на ОККО и СберЗвук", importance: "low", date: "04.03.2026", category: "products", region: "federal", source: "https://www.sberbank.ru/ru/person/mobile/news/okko-tariff" },
+        { text: "СберМобайл внедрил дополнительные механизмы защиты от спам-звонков", importance: "high", date: "07.03.2026", category: "security", region: "federal", source: "https://www.sberbank.ru/ru/person/mobile/news/spam-protection" }
       ]
     },
     {
       operator: "Газпромбанк Мобайл",
       brandColor: "#003399",
       news: [
-        {
-          text: "Газпромбанк Мобайл расширил сеть партнёрских салонов связи",
-          importance: "low",
-          date: "01.03.2026",
-          category: "other",
-          region: "regions",
-          source: "https://www.gazprombank.ru/press/news/mobile-retail-2026"
-        },
-        {
-          text: "Запущен совместный проект с оператором по развитию сетей в регионах",
-          importance: "medium",
-          date: "05.03.2026",
-          category: "other",
-          region: "regions",
-          source: "https://www.gazprombank.ru/press/news/network-regions-2026"
-        }
+        { text: "Газпромбанк Мобайл расширил сеть партнёрских салонов связи", importance: "low", date: "01.03.2026", category: "other", region: "regions", source: "https://www.gazprombank.ru/press/news/mobile-retail-2026" },
+        { text: "Запущен совместный проект с оператором по развитию сетей в регионах", importance: "medium", date: "05.03.2026", category: "other", region: "regions", source: "https://www.gazprombank.ru/press/news/network-regions-2026" }
       ]
     }
   ];
@@ -1259,7 +822,6 @@
     security: "Безопасность и защита",
     other: "Другое"
   };
-
   const CATEGORY_BADGE_TEXT = {
     connection: "качество связи",
     prices: "цены",
@@ -1267,7 +829,6 @@
     security: "безопасность",
     other: "другое"
   };
-
   const REGION_LABELS = {
     all: "Все регионы",
     federal: "Федеральный",
@@ -1276,23 +837,11 @@
     regions: "Регионы"
   };
 
-  // -----------------------------
-  // Состояние + LocalStorage
-  // -----------------------------
-  const STORAGE_KEYS = {
-    theme: "telecom-theme",
-    activeTab: "telecom-active-tab",
-    filters: "telecom-filters"
-  };
-
+  const STORAGE_KEYS = { theme: "telecom-theme", activeTab: "telecom-active-tab", filters: "telecom-filters" };
   const state = {
     theme: "light",
     activeTab: "all",
-    filters: {
-      date: "all",
-      importance: "all",
-      region: "all"
-    },
+    filters: { date: "all", importance: "all", region: "all" },
     shareContext: null,
     carouselIndex: 0,
     carouselTimer: null
@@ -1301,50 +850,32 @@
   function loadStateFromStorage() {
     try {
       const theme = localStorage.getItem(STORAGE_KEYS.theme);
-      if (theme === "light" || theme === "dark") {
-        state.theme = theme;
-      }
-
+      if (theme === "light" || theme === "dark") state.theme = theme;
       const tab = localStorage.getItem(STORAGE_KEYS.activeTab);
-      if (tab && CATEGORY_LABELS[tab]) {
-        state.activeTab = tab;
-      }
-
-      const filtersRaw = localStorage.getItem(STORAGE_KEYS.filters);
-      if (filtersRaw) {
-        const parsed = JSON.parse(filtersRaw);
+      if (tab && CATEGORY_LABELS[tab]) state.activeTab = tab;
+      const raw = localStorage.getItem(STORAGE_KEYS.filters);
+      if (raw) {
+        const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === "object") {
-          state.filters = {
-            date: parsed.date || "all",
-            importance: parsed.importance || "all",
-            region: parsed.region || "all"
-          };
+          state.filters.date = parsed.date || "all";
+          state.filters.importance = parsed.importance || "all";
+          state.filters.region = parsed.region || "all";
         }
       }
-    } catch (e) {
-      console.warn("Не удалось прочитать состояние из localStorage", e);
-    }
+    } catch {}
   }
-
-  function saveStateToStorage() {
+  function saveState() {
     try {
       localStorage.setItem(STORAGE_KEYS.theme, state.theme);
       localStorage.setItem(STORAGE_KEYS.activeTab, state.activeTab);
       localStorage.setItem(STORAGE_KEYS.filters, JSON.stringify(state.filters));
-    } catch (e) {
-      console.warn("Не удалось сохранить состояние в localStorage", e);
-    }
+    } catch {}
   }
 
-  // -----------------------------
-  // Тема
-  // -----------------------------
   function applyTheme() {
     document.body.setAttribute("data-theme", state.theme);
     const thumb = document.querySelector(".theme-toggle-thumb");
-    if (thumb) {
-      thumb.textContent = state.theme === "light" ? "☀" : "🌙";
-    }
+    if (thumb) thumb.textContent = state.theme === "light" ? "☀" : "🌙";
   }
 
   function setupThemeToggle() {
@@ -1352,58 +883,43 @@
     if (!toggle) return;
     toggle.addEventListener("click", () => {
       state.theme = state.theme === "light" ? "dark" : "light";
-      saveStateToStorage();
+      saveState();
       applyTheme();
     });
   }
 
-  // -----------------------------
-  // Tabs
-  // -----------------------------
   function setupTabs() {
-    const tabs = document.querySelectorAll(".tab-pill");
-    tabs.forEach(tab => {
+    document.querySelectorAll(".tab-pill").forEach(tab => {
       tab.addEventListener("click", () => {
-        const tabId = tab.getAttribute("data-tab");
-        if (!tabId || !CATEGORY_LABELS[tabId]) return;
-        state.activeTab = tabId;
-        saveStateToStorage();
+        const id = tab.getAttribute("data-tab");
+        if (!CATEGORY_LABELS[id]) return;
+        state.activeTab = id;
+        saveState();
         updateTabUI();
         renderNews();
       });
     });
     updateTabUI();
   }
-
   function updateTabUI() {
-    const tabs = document.querySelectorAll(".tab-pill");
-    tabs.forEach(tab => {
-      const tabId = tab.getAttribute("data-tab");
-      tab.classList.toggle("active", tabId === state.activeTab);
+    document.querySelectorAll(".tab-pill").forEach(tab => {
+      tab.classList.toggle("active", tab.getAttribute("data-tab") === state.activeTab);
     });
     const titleEl = document.getElementById("news-area-title");
-    if (titleEl) {
-      titleEl.textContent = CATEGORY_LABELS[state.activeTab] || CATEGORY_LABELS.all;
-    }
+    if (titleEl) titleEl.textContent = CATEGORY_LABELS[state.activeTab] || CATEGORY_LABELS.all;
   }
 
-  // -----------------------------
-  // Фильтры
-  // -----------------------------
   function setupFilters() {
-    const chips = document.querySelectorAll(".chip[data-filter-group]");
-    chips.forEach(chip => {
+    document.querySelectorAll(".chip[data-filter-group]").forEach(chip => {
       chip.addEventListener("click", () => {
         const group = chip.getAttribute("data-filter-group");
         const value = chip.getAttribute("data-filter-value");
         if (!group || !value) return;
-
-        document.querySelectorAll(`.chip[data-filter-group="${group}"]`).forEach(c => {
+        document.querySelectorAll('.chip[data-filter-group="' + group + '"]').forEach(c => {
           c.classList.toggle("active", c === chip);
         });
-
         state.filters[group] = value;
-        saveStateToStorage();
+        saveState();
         renderNews();
       });
     });
@@ -1412,84 +928,64 @@
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         state.filters = { date: "all", importance: "all", region: "all" };
-        saveStateToStorage();
+        saveState();
         document.querySelectorAll(".chip[data-filter-group]").forEach(chip => {
-          const value = chip.getAttribute("data-filter-value");
-          chip.classList.toggle("active", value === "all");
+          chip.classList.toggle("active", chip.getAttribute("data-filter-value") === "all");
         });
         renderNews();
       });
     }
 
+    // начальное состояние (все = active)
     document.querySelectorAll(".chip[data-filter-group]").forEach(chip => {
       const group = chip.getAttribute("data-filter-group");
       const value = chip.getAttribute("data-filter-value");
-      const isActive = state.filters[group] === value ||
-        (state.filters[group] === undefined && value === "all");
+      const isActive = state.filters[group] === value || (state.filters[group] === undefined && value === "all");
       chip.classList.toggle("active", isActive);
     });
   }
 
-  // -----------------------------
-  // Дата / период
-  // -----------------------------
   function parseDateRu(str) {
-    const [d, m, y] = str.split(".").map(Number);
-    const date = new Date(y, m - 1, d);
-    if (Number.isNaN(date.getTime())) return null;
-    return date;
+    const parts = str.split(".");
+    if (parts.length !== 3) return null;
+    const d = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10) - 1;
+    const y = parseInt(parts[2], 10);
+    const date = new Date(y, m, d);
+    return isNaN(date.getTime()) ? null : date;
   }
-
-  function differenceInDays(dateA, dateB) {
-    const msPerDay = 24 * 60 * 60 * 1000;
-    const utcA = Date.UTC(dateA.getFullYear(), dateA.getMonth(), dateA.getDate());
-    const utcB = Date.UTC(dateB.getFullYear(), dateB.getMonth(), dateB.getDate());
-    return Math.round((utcA - utcB) / msPerDay);
+  function differenceInDays(a, b) {
+    const ms = 24 * 60 * 60 * 1000;
+    const ua = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const ub = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.round((ua - ub) / ms);
   }
-
-  function matchesDateFilter(dateStr, filterValue) {
-    if (filterValue === "all") return true;
+  function matchesDateFilter(dateStr, filter) {
+    if (filter === "all") return true;
     const date = parseDateRu(dateStr);
     if (!date) return true;
     const now = new Date();
     const diff = differenceInDays(now, date);
-    if (filterValue === "7d") {
-      return diff >= 0 && diff <= 7;
-    }
-    if (filterValue === "3d") {
-      return diff >= 0 && diff <= 3;
-    }
-    if (filterValue === "1d") {
-      return diff === 0 || diff === 1;
-    }
+    if (filter === "7d") return diff >= 0 && diff <= 7;
+    if (filter === "3d") return diff >= 0 && diff <= 3;
+    if (filter === "1d") return diff === 0 || diff === 1;
     return true;
   }
-
   function updateWeekRangeLabel() {
     const now = new Date();
-    const endDate = now;
-    const startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000);
-    const options = { day: "2-digit", month: "2-digit" };
-    const startStr = startDate.toLocaleDateString("ru-RU", options);
-    const endStr = endDate.toLocaleDateString("ru-RU", options);
-    const label = document.getElementById("week-range-label");
-    if (label) {
-      label.textContent = `Неделя: ${startStr} – ${endStr}`;
-    }
+    const start = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000);
+    const opt = { day: "2-digit", month: "2-digit" };
+    const s = start.toLocaleDateString("ru-RU", opt);
+    const e = now.toLocaleDateString("ru-RU", opt);
+    const el = document.getElementById("week-range-label");
+    if (el) el.textContent = "Неделя: " + s + " – " + e;
   }
 
-  // -----------------------------
-  // Преобразование данных для рендера
-  // -----------------------------
   function flattenNews() {
     const items = [];
     telecomData.forEach(op => {
-      op.news.forEach(item => {
-        items.push({
-          ...item,
-          operator: op.operator,
-          brandColor: op.brandColor
-        });
+      op.news.forEach(n => {
+        items.push({ ...n, operator: op.operator, brandColor: op.brandColor });
       });
     });
     items.sort((a, b) => {
@@ -1500,415 +996,287 @@
     return items;
   }
 
-  // -----------------------------
-  // Фильтрация по состоянию
-  // -----------------------------
   function filterNewsByState() {
-    const allItems = flattenNews();
-
-    return allItems.filter(item => {
-      if (state.activeTab !== "all" && item.category !== state.activeTab) {
-        return false;
-      }
-      if (!matchesDateFilter(item.date, state.filters.date)) {
-        return false;
-      }
-      if (state.filters.importance !== "all" && item.importance !== state.filters.importance) {
-        return false;
-      }
-      if (state.filters.region !== "all" && item.region !== state.filters.region) {
-        return false;
-      }
+    const all = flattenNews();
+    return all.filter(item => {
+      if (state.activeTab !== "all" && item.category !== state.activeTab) return false;
+      if (!matchesDateFilter(item.date, state.filters.date)) return false;
+      if (state.filters.importance !== "all" && item.importance !== state.filters.importance) return false;
+      if (state.filters.region !== "all" && item.region !== state.filters.region) return false;
       return true;
     });
   }
 
-  // -----------------------------
-  // Рендер карточки
-  // -----------------------------
+  function importanceBadgeClass(imp) {
+    if (imp === "high") return "badge-importance-high";
+    if (imp === "medium") return "badge-importance-medium";
+    if (imp === "low") return "badge-importance-low";
+    return "";
+  }
+  function importanceLabel(imp) {
+    if (imp === "high") return "ВЫСОКАЯ";
+    if (imp === "medium") return "СРЕДНЯЯ";
+    if (imp === "low") return "НИЗКАЯ";
+    return "НЕИЗВЕСТНО";
+  }
+
   function createNewsCard(item) {
     const card = document.createElement("article");
     card.className = "card";
-    card.style.border = "1px solid var(--border-subtle)";
+    card.style.borderColor = "var(--border-subtle)";
     card.style.boxShadow = "var(--shadow-soft)";
-    card.style.backgroundImage =
-      "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(46,125,50,0.02))";
+    card.style.backgroundImage = "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(46,125,50,0.02))";
 
+    const host = item.source.replace(/^https?:\/\//, "").split("/")[0];
     const regionLabel = REGION_LABELS[item.region] || "Федеральный";
 
-    card.innerHTML = `
-      <div class="card-header">
-        <div>
-          <div class="card-op-name">${item.operator}</div>
-          <div class="card-meta-row">
-            <span>${item.date}</span>
-            <span>•</span>
-            <span>${item.source.replace(/^https?:\\/\\//, "").split("/")[0]}</span>
-            <span>•</span>
-            <span>${regionLabel}</span>
-          </div>
-        </div>
-      </div>
-      <div class="card-meta-row" style="margin-top:4px;">
-        <span class="badge badge-category">${CATEGORY_BADGE_TEXT[item.category] || "новость"}</span>
-        <span class="badge ${importanceBadgeClass(item.importance)}">${importanceLabel(item.importance)}</span>
-      </div>
-      <div class="card-title">
-        ${item.text}
-      </div>
-      <div class="card-footer">
-        <div class="card-footer-left">
-          <span>${item.date}</span>
-          <span>•</span>
-          <a class="source-link" href="${item.source}" target="_blank" rel="noopener noreferrer">Источник</a>
-        </div>
-        <button class="share-btn" type="button">
-          <span>➦</span> Переслать
-        </button>
-      </div>
-    `;
+    card.innerHTML =
+      '<div class="card-header">' +
+        '<div>' +
+          '<div class="card-op-name">' + item.operator + '</div>' +
+          '<div class="card-meta-row">' +
+            '<span>' + item.date + '</span><span>•</span>' +
+            '<span>' + host + '</span><span>•</span>' +
+            '<span>' + regionLabel + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card-meta-row" style="margin-top:4px;">' +
+        '<span class="badge badge-category">' + (CATEGORY_BADGE_TEXT[item.category] || "новость") + '</span>' +
+        '<span class="badge ' + importanceBadgeClass(item.importance) + '">' + importanceLabel(item.importance) + '</span>' +
+      '</div>' +
+      '<div class="card-title">' + item.text + '</div>' +
+      '<div class="card-footer">' +
+        '<div class="card-footer-left">' +
+          '<span>' + item.date + '</span><span>•</span>' +
+          '<a class="source-link" href="' + item.source + '" target="_blank" rel="noopener noreferrer">Источник</a>' +
+        '</div>' +
+        '<button class="share-btn" type="button"><span>➦</span> Переслать</button>' +
+      '</div>';
 
-    requestAnimationFrame(() => {
-      const beforeStyle = document.createElement("style");
-      const uniqueClass = "card-brand-" + Math.random().toString(16).slice(2, 8);
-      card.classList.add(uniqueClass);
-      beforeStyle.textContent = `
-        .${uniqueClass}::before {
-          border-color: ${(item.brandColor || "#2e7d32")}33;
-        }
-      `;
-      document.head.appendChild(beforeStyle);
-    });
+    const styleEl = document.createElement("style");
+    const cls = "card-brand-" + Math.random().toString(16).slice(2, 8);
+    card.classList.add(cls);
+    styleEl.textContent = "." + cls + "::before{border-color:" + (item.brandColor || "#2e7d32") + "33}";
+    document.head.appendChild(styleEl);
 
     const shareBtn = card.querySelector(".share-btn");
     if (shareBtn) {
-      shareBtn.addEventListener("click", () => {
-        openShareModal(item);
-      });
+      shareBtn.addEventListener("click", function () { openShareModal(item); });
     }
 
     return card;
   }
 
-  function importanceBadgeClass(importance) {
-    if (importance === "high") return "badge-importance-high";
-    if (importance === "medium") return "badge-importance-medium";
-    if (importance === "low") return "badge-importance-low";
-    return "";
-  }
-
-  function importanceLabel(importance) {
-    if (importance === "high") return "ВЫСОКАЯ";
-    if (importance === "medium") return "СРЕДНЯЯ";
-    if (importance === "low") return "НИЗКАЯ";
-    return "НЕИЗВЕСТНО";
-  }
-
-  // -----------------------------
-  // Рендер новостей (grid + carousel)
-  // -----------------------------
   function renderNews() {
     const items = filterNewsByState();
     const grid = document.getElementById("news-grid");
-    const emptyState = document.getElementById("empty-state");
-
+    const empty = document.getElementById("empty-state");
     if (grid) {
       grid.innerHTML = "";
-      items.forEach(item => {
-        grid.appendChild(createNewsCard(item));
-      });
+      items.forEach(i => grid.appendChild(createNewsCard(i)));
     }
-
     renderCarousel(items);
-
-    const hasItems = items.length > 0;
-    if (emptyState) {
-      emptyState.classList.toggle("hidden", hasItems);
-    }
-
+    if (empty) empty.classList.toggle("hidden", items.length > 0);
     renderSummary();
-
-    const viewModeLabel = document.getElementById("view-mode-label");
-    if (viewModeLabel) {
-      const mobile = window.innerWidth <= 768;
-      viewModeLabel.textContent = mobile ? "Карусель новостей" : "Сетка карточек";
-    }
+    const label = document.getElementById("view-mode-label");
+    if (label) label.textContent = window.innerWidth <= 768 ? "Карусель новостей" : "Сетка карточек";
   }
 
   function renderCarousel(items) {
     const carousel = document.getElementById("news-carousel");
     if (!carousel) return;
-
     const track = carousel.querySelector(".news-carousel-track");
-    const dotsContainer = carousel.querySelector(".carousel-dots");
-    if (!track || !dotsContainer) return;
-
+    const dots = carousel.querySelector(".carousel-dots");
+    if (!track || !dots) return;
     track.innerHTML = "";
-    dotsContainer.innerHTML = "";
-
-    items.forEach(item => {
+    dots.innerHTML = "";
+    items.forEach(i => {
       const slide = document.createElement("div");
       slide.className = "news-carousel-item";
-      slide.appendChild(createNewsCard(item));
+      slide.appendChild(createNewsCard(i));
       track.appendChild(slide);
     });
-
     state.carouselIndex = 0;
     updateCarouselPosition();
-
-    if (items.length > 0) {
-      for (let i = 0; i < items.length; i++) {
-        const dot = document.createElement("div");
-        dot.className = "carousel-dot" + (i === 0 ? " active" : "");
-        dotsContainer.appendChild(dot);
-      }
+    for (let i = 0; i < items.length; i++) {
+      const d = document.createElement("div");
+      d.className = "carousel-dot" + (i === 0 ? " active" : "");
+      dots.appendChild(d);
     }
-
     setupCarouselControls(items.length);
     restartCarouselAuto(items.length);
   }
-
-  function setupCarouselControls(totalSlides) {
+  function setupCarouselControls(total) {
     const carousel = document.getElementById("news-carousel");
     if (!carousel) return;
-    const prevBtn = carousel.querySelector(".carousel-ctrl.left");
-    const nextBtn = carousel.querySelector(".carousel-ctrl.right");
-
-    if (prevBtn) {
-      prevBtn.onclick = () => {
-        if (totalSlides <= 0) return;
-        state.carouselIndex = (state.carouselIndex - 1 + totalSlides) % totalSlides;
-        updateCarouselPosition();
-        restartCarouselAuto(totalSlides);
-      };
-    }
-
-    if (nextBtn) {
-      nextBtn.onclick = () => {
-        if (totalSlides <= 0) return;
-        state.carouselIndex = (state.carouselIndex + 1) % totalSlides;
-        updateCarouselPosition();
-        restartCarouselAuto(totalSlides);
-      };
-    }
+    const prev = carousel.querySelector(".carousel-ctrl.left");
+    const next = carousel.querySelector(".carousel-ctrl.right");
+    if (prev) prev.onclick = function () {
+      if (total <= 0) return;
+      state.carouselIndex = (state.carouselIndex - 1 + total) % total;
+      updateCarouselPosition();
+      restartCarouselAuto(total);
+    };
+    if (next) next.onclick = function () {
+      if (total <= 0) return;
+      state.carouselIndex = (state.carouselIndex + 1) % total;
+      updateCarouselPosition();
+      restartCarouselAuto(total);
+    };
   }
-
   function updateCarouselPosition() {
     const carousel = document.getElementById("news-carousel");
     if (!carousel) return;
     const track = carousel.querySelector(".news-carousel-track");
     const dots = carousel.querySelectorAll(".carousel-dot");
-    const totalSlides = track ? track.children.length : 0;
-    if (!track || totalSlides === 0) return;
-
+    if (!track) return;
     const offset = -state.carouselIndex * 100;
-    track.style.transform = `translateX(${offset}%)`;
-
-    dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === state.carouselIndex);
-    });
+    track.style.transform = "translateX(" + offset + "%)";
+    dots.forEach(function (d, idx) { d.classList.toggle("active", idx === state.carouselIndex); });
   }
-
-  function restartCarouselAuto(totalSlides) {
+  function restartCarouselAuto(total) {
     if (state.carouselTimer) {
       clearInterval(state.carouselTimer);
       state.carouselTimer = null;
     }
-    if (totalSlides <= 1) return;
-
-    state.carouselTimer = setInterval(() => {
-      state.carouselIndex = (state.carouselIndex + 1) % totalSlides;
+    if (total <= 1) return;
+    state.carouselTimer = setInterval(function () {
+      state.carouselIndex = (state.carouselIndex + 1) % total;
       updateCarouselPosition();
     }, 6000);
   }
 
-  // -----------------------------
-  // Сводка за неделю (sidebar)
-  // -----------------------------
   function getWeekItems() {
-    const allItems = flattenNews();
-    return allItems.filter(item => matchesDateFilter(item.date, "7d"));
+    const all = flattenNews();
+    return all.filter(i => matchesDateFilter(i.date, "7d"));
   }
 
   function renderSummary() {
-    const listEl = document.getElementById("summary-list");
-    const countEl = document.getElementById("summary-count");
-    if (!listEl || !countEl) return;
-
-    const weekItems = getWeekItems();
-
-    weekItems.sort((a, b) => {
-      const priority = { high: 0, medium: 1, low: 2 };
-      const pa = priority[a.importance] ?? 3;
-      const pb = priority[b.importance] ?? 3;
+    const list = document.getElementById("summary-list");
+    const count = document.getElementById("summary-count");
+    if (!list || !count) return;
+    const week = getWeekItems();
+    week.sort((a, b) => {
+      const pr = { high: 0, medium: 1, low: 2 };
+      const pa = pr[a.importance] || 3;
+      const pb = pr[b.importance] || 3;
       if (pa !== pb) return pa - pb;
       const da = parseDateRu(a.date) || new Date(0);
       const db = parseDateRu(b.date) || new Date(0);
       return db - da;
     });
-
-    const topItems = weekItems.slice(0, 12);
-
-    listEl.innerHTML = "";
-    topItems.forEach(item => {
+    const top = week.slice(0, 12);
+    list.innerHTML = "";
+    top.forEach(i => {
       const el = document.createElement("div");
       el.className = "summary-item";
-      el.innerHTML = `
-        <div class="summary-dot"></div>
-        <div class="summary-content">
-          <a class="summary-link" href="${item.source}" target="_blank" rel="noopener noreferrer">${item.text}</a>
-          <div class="summary-operator">${item.operator}</div>
-          <div class="summary-meta">${item.date} • ${importanceLabel(item.importance)}</div>
-        </div>
-      `;
-      listEl.appendChild(el);
+      el.innerHTML =
+        '<div class="summary-dot"></div>' +
+        '<div class="summary-content">' +
+          '<a class="summary-link" href="' + i.source + '" target="_blank" rel="noopener noreferrer">' + i.text + '</a>' +
+          '<div class="summary-operator">' + i.operator + '</div>' +
+          '<div class="summary-meta">' + i.date + ' • ' + importanceLabel(i.importance) + '</div>' +
+        '</div>';
+      list.appendChild(el);
     });
-
-    countEl.textContent = `${weekItems.length} событ.`;
+    count.textContent = week.length + " событ.";
   }
 
   function buildWeeklyShortlistText() {
-    const weekItems = getWeekItems();
-
-    weekItems.sort((a, b) => {
-      const priority = { high: 0, medium: 1, low: 2 };
-      const pa = priority[a.importance] ?? 3;
-      const pb = priority[b.importance] ?? 3;
+    const week = getWeekItems();
+    week.sort((a, b) => {
+      const pr = { high: 0, medium: 1, low: 2 };
+      const pa = pr[a.importance] || 3;
+      const pb = pr[b.importance] || 3;
       if (pa !== pb) return pa - pb;
       const da = parseDateRu(a.date) || new Date(0);
       const db = parseDateRu(b.date) || new Date(0);
       return db - da;
     });
-
-    const topItems = weekItems.slice(0, 10);
-
-    if (topItems.length === 0) return "";
-
-    const lines = [];
-    lines.push("Телеком-дайджест: ключевые новости за неделю:");
-    lines.push("");
-
-    topItems.forEach((item, idx) => {
-      lines.push(`${idx + 1}. ${item.operator} — ${item.text} (${item.date})`);
-      lines.push(item.source);
+    const top = week.slice(0, 10);
+    if (!top.length) return "";
+    const lines = ["Телеком-дайджест: ключевые новости за неделю:", ""];
+    top.forEach((i, idx) => {
+      lines.push((idx + 1) + ". " + i.operator + " — " + i.text + " (" + i.date + ")");
+      lines.push(i.source);
       lines.push("");
     });
-
     return lines.join("\n");
   }
 
   function setupSummaryShare() {
     const btn = document.getElementById("share-summary-tg");
     if (!btn) return;
-
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", function () {
       const text = buildWeeklyShortlistText();
       if (!text.trim()) return;
-      const encText = encodeURIComponent(text);
-      const url = `https://t.me/share/url?text=${encText}`;
+      const url = "https://t.me/share/url?text=" + encodeURIComponent(text);
       window.open(url, "_blank", "noopener,noreferrer");
     });
   }
 
-  // -----------------------------
-  // Модальное окно пересылки (по одной новости)
-  // -----------------------------
   function openShareModal(item) {
     state.shareContext = item;
     const backdrop = document.getElementById("share-modal-backdrop");
     const titleEl = document.getElementById("modal-news-title");
-    if (backdrop) {
-      backdrop.classList.add("visible");
-    }
-    if (titleEl) {
-      titleEl.textContent = item.text;
-    }
+    if (backdrop) backdrop.classList.add("visible");
+    if (titleEl) titleEl.textContent = item.text;
   }
-
   function closeShareModal() {
     const backdrop = document.getElementById("share-modal-backdrop");
-    if (backdrop) {
-      backdrop.classList.remove("visible");
-    }
+    if (backdrop) backdrop.classList.remove("visible");
     state.shareContext = null;
   }
-
   function setupShareModal() {
     const backdrop = document.getElementById("share-modal-backdrop");
     if (!backdrop) return;
-
     const closeBtn = backdrop.querySelector(".modal-close");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => closeShareModal());
-    }
-
-    backdrop.addEventListener("click", (e) => {
-      if (e.target === backdrop) {
-        closeShareModal();
-      }
+    if (closeBtn) closeBtn.addEventListener("click", closeShareModal);
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === backdrop) closeShareModal();
     });
-
-    const options = backdrop.querySelectorAll(".share-option");
-    options.forEach(opt => {
-      opt.addEventListener("click", () => {
+    backdrop.querySelectorAll(".share-option").forEach(function (opt) {
+      opt.addEventListener("click", function () {
         if (!state.shareContext) return;
         const channel = opt.getAttribute("data-share-channel");
         const url = state.shareContext.source;
-        const text = `${state.shareContext.text} (${state.shareContext.operator})`;
+        const text = state.shareContext.text + " (" + state.shareContext.operator + ")";
         const shareUrl = buildShareUrl(channel, url, text);
-        if (shareUrl) {
-          window.open(shareUrl, "_blank", "noopener,noreferrer");
-        }
+        if (shareUrl) window.open(shareUrl, "_blank", "noopener,noreferrer");
         closeShareModal();
       });
     });
   }
-
   function buildShareUrl(channel, url, text) {
     const encUrl = encodeURIComponent(url);
     const encText = encodeURIComponent(text);
-    if (channel === "vk") {
-      return `https://vk.com/share.php?url=${encUrl}&title=${encText}`;
-    }
-    if (channel === "tg") {
-      return `https://t.me/share/url?url=${encUrl}&text=${encText}`;
-    }
-    if (channel === "max") {
-      // ссылка для открытия приложения MAX (предполагаемый custom protocol)
-      return `max://share?text=${encText}`;
-    }
+    if (channel === "vk") return "https://vk.com/share.php?url=" + encUrl + "&title=" + encText;
+    if (channel === "tg") return "https://t.me/share/url?url=" + encUrl + "&text=" + encText;
+    if (channel === "max") return "max://share?text=" + encText;
     return null;
   }
 
-  // -----------------------------
-  // Адаптация под мобильный
-  // -----------------------------
   function setupResponsiveViewLabel() {
     function update() {
-      const viewModeLabel = document.getElementById("view-mode-label");
-      if (!viewModeLabel) return;
-      const mobile = window.innerWidth <= 768;
-      viewModeLabel.textContent = mobile ? "Карусель новостей" : "Сетка карточек";
+      const label = document.getElementById("view-mode-label");
+      if (!label) return;
+      label.textContent = window.innerWidth <= 768 ? "Карусель новостей" : "Сетка карточек";
     }
     window.addEventListener("resize", update);
     update();
   }
 
-  // -----------------------------
-  // Инициализация
-  // -----------------------------
   function init() {
     loadStateFromStorage();
     applyTheme();
     updateWeekRangeLabel();
-
     setupThemeToggle();
     setupTabs();
     setupFilters();
     setupShareModal();
     setupSummaryShare();
     setupResponsiveViewLabel();
-
     renderNews();
   }
 
